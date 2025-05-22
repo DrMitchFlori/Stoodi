@@ -3,14 +3,18 @@ import { useAppContext } from '../context/AppContext';
 
 const TutorChatWorkspacePage = () => {
   const [messages, setMessages] = useState([]);
-  const { currentUser } = useAppContext();
+  const { currentUser, addToast } = useAppContext();
 
   const handleSend = (e) => {
     e.preventDefault();
     const form = e.target;
     const value = form.elements.message.value;
-    if (!value) return;
+    if (!value) {
+      addToast('Please enter a message.');
+      return;
+    }
     setMessages([...messages, { sender: currentUser.name, text: value }]);
+    addToast('Message sent!');
     form.reset();
   };
 
