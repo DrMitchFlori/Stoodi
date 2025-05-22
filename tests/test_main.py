@@ -33,8 +33,8 @@ class APITestCase(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"detail": "Question must not be empty"})
 
-    def test_invalid_json(self):
-        response = client.post(
+    async def test_invalid_json(self):
+        response = await self.client.post(
             "/ask",
             data="{",
             headers={"Content-Type": "application/json"},
@@ -42,9 +42,9 @@ class APITestCase(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json(), {"detail": "Malformed JSON"})
 
-    def test_unexpected_error(self):
+    async def test_unexpected_error(self):
         with patch("src.main.agent.ask", side_effect=RuntimeError("boom")):
-            response = client.post("/ask", json={"question": "Hello"})
+            response = await self.client.post("/ask", json={"question": "Hello"})
         self.assertEqual(response.status_code, 500)
         self.assertEqual(response.json(), {"detail": "Internal Server Error"})
 
