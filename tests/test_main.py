@@ -1,23 +1,30 @@
-import asyncio
 import unittest
 
-from src.main import app, health, ask_question, Question
+from fastapi.testclient import TestClient
+
+from src.main import app
 
 
-class APITestCase(unittest.IsolatedAsyncioTestCase):
-    async def test_health(self):
-        response = await health()
-        self.assertEqual(response, {"status": "ok"})
+client = TestClient(app)
 
-    async def test_ask(self):
-        question = Question(question="What is the capital of France?")
-        answer = await ask_question(question)
-        self.assertIn("France", answer.answer)
 
-    async def test_empty_question(self):
-        with self.assertRaises(Exception):
-            question = Question(question="")
-            await ask_question(question)
+class APITestCase(unittest.TestCase):
+    def test_health(self):
+        response = client.get("/health")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"status": "ok"})
+
+    def test_ask(self):
+        response = client.post("/ask", json={"question": "What is the capital of France?"})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("answer", data)
+        self.assertIn("France", data["answer"])
+
+    def test_empty_question(self):
+        response = client.post("/ask", json={"question": ""})
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json(), {"detail": "Question must not be empty"})
 
 
 if __name__ == "__main__":
