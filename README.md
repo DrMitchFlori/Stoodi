@@ -28,3 +28,12 @@ Execute the unit tests with:
 python -m unittest discover tests
 ```
 
+## Package Version
+
+You can check the installed version programmatically:
+
+```python
+from src import __version__
+print(__version__)
+```
+
