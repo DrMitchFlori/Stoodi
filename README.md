@@ -37,3 +37,31 @@ from src import __version__
 print(__version__)
 ```
 
+## Frontend
+
+The `frontend/` directory contains a React application built with Vite.
+
+### Development server
+
+Ensure Node.js (>=18) and npm are installed. Then run:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The app will be served at `http://localhost:3000`.
+
+### Production build
+
+To create an optimized build:
+
+```bash
+cd frontend
+npm install
+npm run build
+```
+
+The static files will be generated in `frontend/dist/`.
+
