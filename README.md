@@ -1,6 +1,6 @@
 # Lumina Learn
 
-This repository contains an early prototype of **Lumina Learn**, an AI-powered study companion inspired by the design document in the `Project` file.
+This repository contains an early prototype of **Lumina Learn**, an AI-powered study companion inspired by the [design document](docs/design.md).
 
 ## Running the API
 
