@@ -3,7 +3,7 @@ import Toast from './Toast';
 import { useAppContext } from '../context/AppContext';
 
 const ToastContainer = () => {
-  const { toasts, addToast, removeToast } = useAppContext();
+  const { toasts, removeToast } = useAppContext();
 
   return (
     <div className="fixed top-4 right-4 space-y-2 z-50">
