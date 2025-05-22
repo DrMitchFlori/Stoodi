@@ -61,8 +61,7 @@ async def health() -> dict:
 async def ask_question(question: Question) -> Answer:
     """Ask the TutorAgent a question."""
     try:
-        answer_text = agent.ask(question.question.strip())
-        answer_text = await agent.ask(question.question)
+        answer_text = await agent.ask(question.question.strip())
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     return Answer(answer=answer_text)
