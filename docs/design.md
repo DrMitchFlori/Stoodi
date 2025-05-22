@@ -1,3 +1,5 @@
+# Lumina Learn Design Document
+
 Below is a **strategy-level design blueprint** for a next-generation study app that takes full advantage of the AI capabilities Google unveiled at I/O 2025. I’ve emphasised modularity so you can roll out a core web/mobile product quickly, then layer on the flashier XR and multimodal features as Google’s SDKs mature.
 
 ---
@@ -16,7 +18,7 @@ Below is a **strategy-level design blueprint** for a next-generation study app t
 
 ## 2  High-Level Architecture
 
-```
+```text
  ┌────────────────────────────┐
  │   Front-End Clients        │
  │ ────────────────────────── │
