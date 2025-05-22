@@ -439,3 +439,223 @@ D. Glossary (see PRD)
 ---
 
 **End of Project Plan v0.1**
+
+# Lumina Learn – Design Features Catalogue
+
+**Version:** 0.1
+**Date:** 22 May 2025
+
+---
+
+## 1  Core User Experience
+
+* **Unified Chat Workspace** – Clean, distraction-free text area with collapsible resource sidebar; split-pane view on tablets/desktop.
+* **Drag-and-Drop Upload Dock** – One-step import of PDFs, slides, images; animated progress bar and immediate “in-library” confirmation.
+* **Contextual Quick Actions** – Hover tooltips offering “Summarise,” “Quiz me,” or “Video-fy” when selecting text or files.
+* **Adaptive Theming** – Auto-switches to light/dark and high-contrast modes based on OS settings; overrides in settings panel.
+* **Mastery Tracker Ribbon** – Horizontal progress bar atop chat showing topic proficiency, colour-coded (green mastered, amber developing, red review).
+
+## 2  AI Interaction Features
+
+* **Smart Follow-Ups** – Gemini recommends next logical question buttons (pill chips) after each answer.
+* **Explain-Like-I’m-5 Toggle** – One-tap simplification of complex explanations using LearnLM pedagogy rules.
+* **Thought Summary Peek** – Collapsible panel revealing the AI’s reasoning outline for transparency.
+* **Citation Chips** – Inline citation numbers that expand into side drawer with source snippets and links.
+* **On-Device Fallback Badge** – Subtle icon indicating when Gemma 3n (offline) answered vs. cloud Gemini, for trust context.
+
+## 3  Media & Multimodal Features
+
+* **Slide-to-Video Wizard** – 3-step flow: choose deck → pick tone (Formal, Energetic, Calm) → preview AI-generated video; includes AI avatar presenter selection.
+* **Inline Image Generator** – “/image” slash command launches Imagen 4 prompt modal; images insert directly into chat with SynthID watermark badge.
+* **Snippet-to-Song** – Highlight text → “Compose audio” to generate short Lyria 2 background loop for presentations.
+* **Dynamic Flashcards** – Auto-create, flip-style cards from selected notes; includes spaced-repetition scheduler.
+
+## 4  Mobile & XR Enhancements
+
+* **Point-and-Ask Lens** – Camera overlay with bounding box; tap to question any on-screen formula/diagram; haptic pulse when answer ready.
+* **Offline Blitz Mode** – Lightweight Gemma 3n quiz drill that works in airplane mode; streak counter and confetti animation on perfect round.
+* **XR Heads-Up Helper** – For Android XR glasses: top-of-view word translation subtitles; side swipe to bring up step-by-step lab instructions.
+
+## 5  Accessibility & Inclusion
+
+* **Real-Time Translation** – Powered by Gemini; toggles language overlay in chat and on generated videos.
+* **Screen-Reader Optimised NAV** – ARIA landmarks, logical heading order, and alt-text auto-generated for media.
+* **Colour-Blind Safe Palette** – Ensures charts and progress bars are discernible in deuteranopia and protanopia modes.
+* **Font Scale Slider** – In-app dynamic type scaling up to 200%.
+
+## 6  Teacher & Admin Tools
+
+* **Cohort Heatmap Dashboard** – Visual map of class misunderstandings; click cell to view anonymised exemplar answers.
+* **Rubric Generator** – Paste assignment brief → AI drafts rubric criteria matrix with Bloom’s verbs.
+* **Bulk Comment Bot** – Upload CSV of student IDs & files; returns ZIP of annotated PDFs with inline AI comments.
+* **Plagiarism Insight Panel** – Cross-checks AI usage logs vs. submission; flags potential overreliance.
+
+## 7  Gamification & Motivation
+
+* **Streak Flames & Study XP** – Daily streak counter with “flame” animation; XP awarded per mastered concept.
+* **Mini-Boss Challenges** – Weekly timed quiz events; leaderboard by course.
+* **Achievement Badges** – e.g., “Night-Owl Scholar” for studying after 11 pm, “Teach Me” badge for explaining topic to peer via AI.
+
+## 8  Security & Trust Features
+
+* **SynthID Detector Button** – One-click verify authenticity of any generated media.
+* **Privacy Ledger View** – User-readable log of data sent to cloud vs. processed on-device.
+
+---
+
+# Lumina Learn – UI Design Specification (v0.1)
+
+**Author:** UX Team
+**Date:** 22 May 2025
+
+---
+
+## 1  Design Principles
+
+1. **Clarity First** – Prioritise legibility and focus on tasks (chat, upload, learn).
+2. **Zero‑Friction Interactions** – One‑tap or drag‑and‑drop for primary actions.
+3. **Context = Confidence** – Always show citations, AI source badges, and thought‑peek affordances.
+4. **Delight with Restraint** – Animations reinforce actions (e.g., streak confetti) but never block workflow.
+5. **Accessible by Default** – AA colour contrast, keyboard nav, screen‑reader labels, reduced‑motion option.
+
+---
+
+## 2  Core Screens & Layouts
+
+### 2.1  **Landing / Course Dashboard**
+
+| Area                            | Spec                                                                                                         |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Top App Bar**                 | • App logo left  • “Courses” drop‑down  • Notification bell  • Profile avatar                                |
+| **Hero Tile (Course Overview)** | Card showing last‑opened course → tap to resume chat. Background gradient in course brand colour.            |
+| **Course Grid**                 | Responsive CSS Grid (auto‑fill, min 260 px). Card includes progress ring, course title, instructor initials. |
+| **Global FAB**                  | Bottom‑right “+ New Course” (Lottie plus‑animation) → opens modal to enter code.                             |
+
+### 2.2  **Tutor Chat Workspace**
+
+| Zone                           | Description                                                                               |
+| ------------------------------ | ----------------------------------------------------------------------------------------- |
+| **Left Sidebar (collapsible)** | Tabs: **Library**, **Flashcards**, **Progress**. Slide‑in/out at 240 px width.            |
+| **Main Chat Pane**             | 1 column max‑width 720 px; message bubbles 80 % width; assistant messages colour #F1F6FF. |
+| **Citation Chips**             | Superscript numbers link to side drawer (opens right). Hover reveals tooltip.             |
+| **Message Composer**           | Components: • multiline input • attachment clip • slash‑command helper • Send arrow.      |
+| **Quick Follow‑Up Row**        | Horizontal scroll chips under each AI answer (max 3 suggestions).                         |
+
+### 2.3  **Upload Modal**
+
+| State         | UI Elements                                                                                           |
+| ------------- | ----------------------------------------------------------------------------------------------------- |
+| **Idle**      | Drag‑area with dotted border + icon; “Drop files or click to browse”. Accepts PDF, docx, ppt, images. |
+| **Uploading** | File tile list with progress bars ≈ Tailwind `animate-pulse`; cancel x icon.                          |
+| **Success**   | Green tick animation, “Indexed – ask away!” link to start question.                                   |
+| **Error**     | Red icon if parsing fails; tooltip shows error details; retry button.                                 |
+
+### 2.4  **Slide‑to‑Video Wizard**
+
+1. **Select Deck** page – uses Drive picker component.
+2. **Tone & Avatar** – Radio cards (Formal, Energetic, Calm) + AI avatar carousel (photo‑real).
+3. **Preview & Edit** – Video player; timeline thumbnails; side panel for script edits.
+4. **Export** – Big CTA buttons: *Download MP4* | *Add to Library*.
+
+### 2.5  **Progress Tracker Page**
+
+| Element                 | Details                                                                          |
+| ----------------------- | -------------------------------------------------------------------------------- |
+| **Mastery Ring**        | Donut chart showing overall % mastered; centre displays XP.                      |
+| **Topic Accordion**     | Expandable list; each item has status chip (Mastered/Review) and “Quiz me” icon. |
+| **Streak Flame Banner** | Top banner; flame icon + streak days; subtle shimmering glow.                    |
+
+### 2.6  **Teacher Dashboard (Web only)**
+
+| Section              | Component                                                             |
+| -------------------- | --------------------------------------------------------------------- |
+| **Heatmap**          | 20×N grid; cell tooltip shows misconception & link to sample answer.  |
+| **Rubric Generator** | Textarea + “Generate” button; outputs criteria table editable inline. |
+| **Bulk Comment Bot** | Upload CSV + template picker; progress bar + ZIP download.            |
+
+---
+
+## 3  Navigation & Information Architecture
+
+* **Global Header** persists across web; contains App logo ↱ Dashboard, Current course badge, Notifications, Profile.
+* **Mobile Bottom Nav** – 3 tabs: *Dashboard*, *Tutor*, *Library*. FAB appears conditionally.
+* **Breadcrumbs** for Teacher views (Institution › Course › Dashboard).
+
+---
+
+## 4  Visual Style Guide
+
+| Token              | Value                                                    |
+| ------------------ | -------------------------------------------------------- |
+| **Primary Colour** | `#2563EB` (Tailwind blue‑600)                            |
+| **Secondary**      | `#22C55E` (green‑500)                                    |
+| **Error**          | `#EF4444` (red‑500)                                      |
+| **Grey‑BG**        | `#F7F9FB`                                                |
+| **Font Family**    | `Inter`, sans‑serif                                      |
+| **Heading Sizes**  | h1 text‑4xl, h2 text‑2xl, h3 text‑xl                     |
+| **Border Radius**  | `rounded‑2xl` (16 px) cards; buttons `rounded‑lg` (8 px) |
+| **Shadow**         | `shadow‑md` (#000 / 5 %)                                 |
+
+### Component Library
+
+* **Buttons** – Primary (solid), Secondary (outline), Tertiary (ghost) using shadcn/ui classes.
+* **Cards** – Soft shadow, padding 5, gap‑4.
+* **Chips** – Pill‑shape `rounded‑full` with text‑sm.
+* **Modals** – Centre, width 600 px (desktop) / 90 % (mobile).
+* **Animations** – Use Framer Motion with 150 ms ease‑out for slide/fade.
+
+---
+
+## 5  States & Feedback
+
+| State              | Pattern                                                                    |
+| ------------------ | -------------------------------------------------------------------------- |
+| **Loading**        | Skeleton placeholders for cards / chat bubbles (Tailwind `animate-pulse`). |
+| **Empty**          | Illustrations from unDraw + concise guidance text.                         |
+| **Error Toast**    | Bottom‑left snack; auto‑dismiss 5 s; colour red‑500.                       |
+| **Success Toast**  | Green tick; auto‑dismiss 3 s.                                              |
+| **Offline Banner** | Yellow bar top of screen; indicates offline and switch to Gemma 3n.        |
+
+---
+
+## 6  Accessibility Details
+
+* **Focus Ring** – 2 px primary blue outline on keyboard focus.
+* **Skip‑to‑Content** link appears on tab‑start.
+* **ARIA Live Regions** – Announce chat message arrivals & file‑upload completion.
+* **Contrast** – Verify text vs. background ≥ 4.5:1 small text, 3:1 large.
+* **Motion Toggle** – `prefers-reduced-motion` → disable confetti & flame animations.
+
+---
+
+## 7  Iconography & Illustrations
+
+* **Icon Set** – `lucide-react` for crisp stroke icons.
+* **Course Illustrations** – AI‑generated via Imagen 4 (flat colour style) but vetted & down‑scaled.
+
+---
+
+## 8  Prototype Links
+
+* **Figma Prototype v0.1** – *to‑be‑created* (placeholder).
+* **Storybook** – Components to be documented in Storybook with accessibility notes.
+
+---
+
+## 9  Open Items
+
+1. Finalise palette variants for dark mode.
+2. Decide on avatar visual language (photo‑real vs. stylised).
+3. Need sample datasets for progress tracker demo.
+
+## 10  Next Steps
+
+* Wireframes for Tutor Chat & Upload Modal by **7 Jun 2025**.
+* Create component tokens in Tailwind config.
+* Accessibility audit scheduled for **20 Jun 2025**.
+
+---
+
+*End of UI Design Specification v0.1*
+
+
