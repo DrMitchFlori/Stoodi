@@ -1,1 +1,8 @@
 __pycache__/
+
+# Python ignores
+*.py[cod]
+venv/
+.env
+.pytest_cache/
+*.log
