@@ -30,7 +30,7 @@ Below is a **strategy-level design blueprint** for a next-generation study app t
  └────────────┬───────────────┘
               │gRPC / REST / WebSocket
  ┌────────────▼───────────────┐
- │   Orchestrator / AgentHub  │  ← built with **Google ADK 1.0** :contentReference[oaicite:2]{index=2}
+ │   Orchestrator / AgentHub  │  ← built with **Google ADK 1.0** :contentReference[2]{index=2}
  │  • Session router          │
  │  • Tool & agent registry   │
  │  • Rate-limit, billing     │
@@ -39,7 +39,7 @@ Below is a **strategy-level design blueprint** for a next-generation study app t
       ┌───────▼─────────┐
       │  Core Agents    │
       │────────────────│
-      │  • TutorAgent   │→ Gemini 2.5 Pro (“Deep-Think”) :contentReference[oaicite:3]{index=3}
+      │  • TutorAgent   │→ Gemini 2.5 Pro (“Deep-Think”) :contentReference[3]{index=3}
       │  • ResearchAgent│→ Gemini Flash + AI Mode Search
       │  • MediaAgent   │→ Imagen 4 & Veo 3, SynthID
       │  • XRAgent      │→ On-device Gemma 3n / Vision | XR APIs
