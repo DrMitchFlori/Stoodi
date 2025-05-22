@@ -1,18 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import Toast from './Toast';
-
-let idCounter = 0;
+import { useAppContext } from '../context/AppContext';
 
 const ToastContainer = () => {
-  const [toasts, setToasts] = useState([]);
-
-  const addToast = useCallback((message) => {
-    setToasts((prev) => [...prev, { id: idCounter++, message }]);
-  }, []);
-
-  const removeToast = useCallback((id) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  }, []);
+  const { toasts, addToast, removeToast } = useAppContext();
 
   return (
     <div className="fixed top-4 right-4 space-y-2 z-50">
