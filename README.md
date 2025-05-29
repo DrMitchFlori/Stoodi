@@ -65,3 +65,7 @@ npm run build
 
 The static files will be generated in `frontend/dist/`.
 
+
+## Reinforcement Learning Agent
+
+A minimal scaffold for an AlphaZero-style training loop lives in `rl_agent/`. It includes neural network models, Monte Carlo Tree Search and utilities for self-play with Stockfish. See [docs/rl_agent.md](docs/rl_agent.md) for an overview.
